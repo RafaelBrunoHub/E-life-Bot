@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-condo-green: #00ff00;
+  --color-condo-black: #000000;
+}
+
+body {
+  @apply bg-condo-black text-white font-sans;
+}
+
+.high-contrast-border {
+  @apply border-2 border-condo-green;
+}
+
+.high-contrast-btn {
+  @apply bg-condo-green text-condo-black font-bold px-6 py-3 rounded-none hover:bg-white transition-colors uppercase tracking-widest;
+}
+
+.chat-bubble-user {
+  @apply bg-zinc-800 text-white p-4 rounded-xl rounded-tr-none self-end max-w-[80%];
+}
+
+.chat-bubble-bot {
+  @apply bg-condo-green text-condo-black p-4 rounded-xl rounded-tl-none self-start max-w-[80%] font-medium;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-condo-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-condo-green;
+}
