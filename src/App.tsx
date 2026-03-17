@@ -34,7 +34,7 @@ export default function App() {
     {
       id: "1",
       role: "bot",
-      text: "Olá! Sou o assistente virtual do E/life Mandaqui. Como posso ajudar você hoje? Posso informar sobre regras de pets, mudanças, obras, coleta de lixo e muito mais.",
+      text: "Olá! Sou o **E/life Bot**, seu assistente virtual. Como posso ajudar você hoje? Posso informar sobre regras de pets, mudanças, obras, coleta de lixo e outros assuntos do condomínio.",
       timestamp: new Date(),
     },
   ]);
@@ -78,11 +78,12 @@ export default function App() {
     setIsLoading(false);
   };
 
-  const quickLinks = [
-    { icon: <Phone size={18} />, label: "Contatos Úteis", info: "Econ: 4020-8120 | Síndico: (11) 96590-1611" },
-    { icon: <Calendar size={18} />, label: "Mudanças", info: "Agendar via Winker com 48h de antecedência." },
-    { icon: <Trash2 size={18} />, label: "Coleta de Lixo", info: "Orgânico: Seg/Qua/Sex | Reciclável: Sex 22h" },
-    { icon: <ShieldAlert size={18} />, label: "Obras", info: "ART/RRT obrigatória. Martelete proibido." },
+  const suggestedQuestions = [
+    "Qual a senha do Wi-fi?",
+    "Quais os dias de coleta de lixo?",
+    "Como agendar uma mudança?",
+    "Regras para pets no elevador",
+    "Pode usar martelete em obra?"
   ];
 
   return (
@@ -95,7 +96,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-condo-green font-black text-xl tracking-tighter uppercase leading-none">
-              E/life Mandaqui
+              E/life Bot
             </h1>
             <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
               Portal do Morador • IA Assistente
@@ -103,12 +104,20 @@ export default function App() {
           </div>
         </div>
         
-        <button 
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="lg:hidden text-condo-green p-2"
-        >
-          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={() => setMessages([messages[0]])}
+            className="hidden sm:flex items-center gap-2 text-zinc-500 hover:text-white text-[10px] font-bold uppercase tracking-widest transition-colors mr-4"
+          >
+            <Trash2 size={14} /> Limpar Chat
+          </button>
+          <button 
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="lg:hidden text-condo-green p-2"
+          >
+            {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </header>
 
       <div className="flex flex-1 overflow-hidden relative">
@@ -120,19 +129,20 @@ export default function App() {
           <div className="space-y-8">
             <div>
               <h2 className="text-condo-green text-xs font-black uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                <Info size={14} /> Informações Rápidas
+                <MessageSquare size={14} /> Sugestões
               </h2>
-              <div className="space-y-4">
-                {quickLinks.map((link, i) => (
-                  <div key={i} className="group cursor-default">
-                    <div className="flex items-center gap-2 text-zinc-300 font-bold text-sm mb-1 group-hover:text-condo-green transition-colors">
-                      {link.icon}
-                      {link.label}
-                    </div>
-                    <p className="text-zinc-500 text-xs leading-relaxed">
-                      {link.info}
-                    </p>
-                  </div>
+              <div className="space-y-2">
+                {suggestedQuestions.map((q, i) => (
+                  <button 
+                    key={i} 
+                    onClick={() => {
+                      setInput(q);
+                      setIsSidebarOpen(false);
+                    }}
+                    className="w-full text-left p-3 bg-zinc-800/50 hover:bg-condo-green hover:text-condo-black text-zinc-400 text-xs font-bold transition-all border border-zinc-700/50 rounded-sm"
+                  >
+                    {q}
+                  </button>
                 ))}
               </div>
             </div>

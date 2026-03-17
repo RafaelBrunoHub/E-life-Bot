@@ -1,5 +1,5 @@
 {
-  "name": "E/life Mandaqui - Portal do Morador",
-  "description": "Aplicativo para moradores do condomínio E/life Mandaqui com chatbot de IA para informações gerais.",
+  "name": "E/life Bot",
+  "description": "Assistente virtual para moradores do condomínio E/life Mandaqui.",
   "requestFramePermissions": []
 }
